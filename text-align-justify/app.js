@@ -12,9 +12,12 @@ function justify(text, width) {
         wordsLength += textArr[i].length
         blank = width - wordsLength
 
+        // At least there should be a Space between each words (except after the last word)
         if (blank > temporaryArr.length - 1) {
+            console.log('a')
             return (true)
         } else {
+            console.log('b')
             // The variable's was reset because it has changed but the condition is false
             wordsLength -= textArr[i].length
             blank += textArr[i].length
