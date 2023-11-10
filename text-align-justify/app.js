@@ -1,37 +1,40 @@
 const LIPSUM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sagittis dolor mauris, at elementum ligula tempor eget. In quis rhoncus nunc, at aliquet orci. Fusce at dolor sit amet felis suscipit tristique. Nam a imperdiet tellus. Nulla eu vestibulum urna. Vivamus tincidunt suscipit enim, nec ultrices nisi volutpat ac. Maecenas sit amet lacinia arcu, non dictum justo. Donec sed quam vel risus faucibus euismod. Suspendisse rhoncus rhoncus felis at fermentum. Donec lorem magna, ultricies a nunc sit amet, blandit fringilla nunc. In vestibulum velit ac felis rhoncus pellentesque. Mauris at tellus enim. Aliquam eleifend tempus dapibus. Pellentesque commodo, nisi sit amet hendrerit fringilla, ante odio porta lacus, ut elementum justo nulla et dolor.'
 
 function justify(text, width) {
-    let textArr = text.split(' '),
+    let i = 0,
+        splitedText = text.split(' '),
+        justifiedText = '',
+        // Temporary Variables For Each Line 👇
         temporaryArr = [],
         wordsLength = 0,
-        blank,
-        justifiedText = '',
-        i = 0;
+        blankSpace;
 
     const capacityChecker = () => {
-        wordsLength += textArr[i].length
-        blank = width - wordsLength
+        wordsLength += splitedText[i].length
+        blankSpace = width - wordsLength
 
-        if (blank > temporaryArr.length - 1) {
+        // in this condition, we want to check whether there is enough space between words. 
+        // remember last word doesn't have space after himself.
+        if (blankSpace > temporaryArr.length - 1) {
             return (true)
         } else {
-            // The variable's was reset because it has changed but the condition is false
-            wordsLength -= textArr[i].length
-            blank += textArr[i].length
+            // The variables were reset because they changed but the conditions were incorrect
+            wordsLength -= splitedText[i].length
+            blankSpace += splitedText[i].length
             return (false)
         }
     }
 
     const justifying = () => {
         let j = 0
-        while (blank > 0) {
+        while (blankSpace > 0) {
             if (j == temporaryArr.length - 1) {
                 j = 0
                 continue
             }
             temporaryArr[j] += ' '
             j += 1
-            blank -= 1
+            blankSpace -= 1
         }
     }
 
@@ -43,23 +46,23 @@ function justify(text, width) {
     }
 
     const fixForAfterLine = () => {
-        textArr.splice(0, temporaryArr.length)
+        splitedText.splice(0, temporaryArr.length)
         temporaryArr = []
         wordsLength = 0
     }
 
     do {
         if (capacityChecker()) {
-            temporaryArr.push(textArr[i])
+            temporaryArr.push(splitedText[i])
             i += 1
         } else {
             justifying()
             mergingWords()
             fixForAfterLine()
         }
-    } while (i <= textArr.length);
+    } while (i <= splitedText.length);
 
-    console.log(textArr)
+    console.log(splitedText)
     return justifiedText
 }
 
