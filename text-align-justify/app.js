@@ -1,6 +1,8 @@
+// !V1 - in this version, the code has an Execution Timed Out (12000 ms) Problem.
+
 const LIPSUM = 'Sunt dolore occaecat deserunt qui irure labore excepteur quis magna do in. Velit occaecat proident occaecat id commodo commodo non fugiat velit proident laborum. Ut nostrud minim fugiat sunt quis proident aliquip excepteur id non amet deserunt nisi voluptate. Proident laborum tempor deserunt sint ut. Mollit ea culpa consequat Lorem labore elit officia adipisicing cupidatat commodo consectetur.'
 
-function justify(text, width) {
+/* function justify(text, width) {
     let i = 0,
         splitedText = text.split(' '),
         justifiedText = '',
@@ -66,7 +68,7 @@ function justify(text, width) {
         i = 0
     }
 
-    do {
+    while (i <= splitedText.length) {
         if (splitedText[i] == undefined) {
             mergingWords(true)
             break
@@ -80,9 +82,9 @@ function justify(text, width) {
             mergingWords(false)
             fixForAfterLine()
         }
-    } while (i <= splitedText.length);
+    }
 
     return justifiedText
 }
 
-console.log(justify(LIPSUM, 30)) 
+console.log(justify(LIPSUM, 10))  */
